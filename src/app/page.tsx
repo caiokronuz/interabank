@@ -32,7 +32,7 @@ export default function Home() {
       </header>
 
       {isBillModalsOpen && <BillsToPay close={() => setIsBillModalsOpen(!isBillModalsOpen)} attInteras={(value: any) => attInteras(value)} setBillsToPay={(value: any) => setBillsToPay(value)}/>}
-      {isDepositModalOpen && <DepositOnAccount close={() => setIsDepositModalOpen(!isDepositModalOpen)}/>}
+      {isDepositModalOpen && <DepositOnAccount close={() => setIsDepositModalOpen(!isDepositModalOpen)} reais={reais}/>}
       {isInvestModalOpen && <Invest close={() => setIsInvestModalOpen(!isInvestModalOpen)}/>}
 
 
