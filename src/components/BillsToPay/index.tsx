@@ -12,9 +12,9 @@ export function BillsToPay(props: Props){
     const [text, setText] = useState("Pagar")
 
     function showMsg(){
-        swal.fire("Confirmado","Pagamento efetuado com sucesso.", "success")
+        swal.fire("Confirmado","Pagamento da sua conta de energia efetuado com sucesso.", "success")
         setText("Pago")
-        props.attInteras(834.90/2)
+        props.attInteras(23400/1.42)
         props.setBillsToPay(0);
     }
 
@@ -34,7 +34,7 @@ export function BillsToPay(props: Props){
                     <div className={style.bill}>
                         <p><span>Referência:</span> 08/2023</p>
                         <p><span>Vencimento:</span> 10/09/2023</p>
-                        <p><span>Valor:</span> R$834,90</p>
+                        <p><span>Valor:</span> R$23.400,00</p>
                         <button onClick={payBill}>{text}</button>
                     </div>
                 </main>

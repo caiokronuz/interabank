@@ -11,8 +11,8 @@ import logo from '../../public/logo.png';
 
 export default function Home() {
 
-  const [interas,setInteras] = useState(500)
-  const [reais, setReais] = useState(interas * 2)
+  const [interas,setInteras] = useState(20000)
+  const [reais, setReais] = useState(interas * 1.42)
   const [isBillModalsOpen, setIsBillModalsOpen] = useState(false)
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false)
   const [isInvestModalOpen, setIsInvestModalOpen] = useState(false)
@@ -21,7 +21,7 @@ export default function Home() {
 
   function attInteras(value: any){
     setInteras(interas - value)
-    setReais((interas - value) * 2)
+    setReais((interas - value) * 1.42)
   }
 
   return (
@@ -32,12 +32,17 @@ export default function Home() {
       </header>
 
       {isBillModalsOpen && <BillsToPay close={() => setIsBillModalsOpen(!isBillModalsOpen)} attInteras={(value: any) => attInteras(value)} setBillsToPay={(value: any) => setBillsToPay(value)}/>}
-      {isDepositModalOpen && <DepositOnAccount close={() => setIsDepositModalOpen(!isDepositModalOpen)} reais={reais}/>}
-      {isInvestModalOpen && <Invest close={() => setIsInvestModalOpen(!isInvestModalOpen)}/>}
+      {isDepositModalOpen && <DepositOnAccount close={() => setIsDepositModalOpen(!isDepositModalOpen)} reais={reais} attInteras={(value: any) => attInteras(value)}/>}
+      {isInvestModalOpen && <Invest close={() => setIsInvestModalOpen(!isInvestModalOpen)} attInteras={(value:any) => attInteras(value)} reais={reais}/>}
 
 
       <div className={styles.page}>
         <div className={styles.mid}>
+          <h1 className={styles.greetings}>Olá, Santa Edwiges.</h1>
+          <div className={styles.generation}>
+            <h1>Geração 08/2023</h1>
+            <p>40.000,00 kWh</p>
+          </div>
           <div className={styles.painel}>
             <p>I$ {interas.toFixed(2)}</p>
             <span>= R$ {reais.toFixed(2)}</span>

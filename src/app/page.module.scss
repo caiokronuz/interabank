@@ -29,7 +29,14 @@
     align-items: center;
 
     .mid{
-      .painel{
+      text-align: center;
+
+      .greetings{
+        margin-bottom: 0.5em;
+        color: #3A3A3A;
+      }
+
+      .generation, .painel{
         width: 80vw;
         height: 20vh;
         background-color: #3A3A3A;
@@ -40,7 +47,23 @@
         justify-content: center;
         align-items: center;
         flex-direction: column;
+      }
 
+      .generation{
+        h1{
+          font-size: 1.5em;
+          color: #1ECBB5;
+        }
+
+        p{
+          margin-top: 0.5em;
+          font-size: 2em;
+        }
+      }
+
+      .painel{
+
+        margin-top: 2em;
         p{
           font-size: 3em;
         }
@@ -49,6 +72,7 @@
           font-size: 1.5em;
         }
       }
+
       .buttons{
         width: 80vw;
         display: flex;
