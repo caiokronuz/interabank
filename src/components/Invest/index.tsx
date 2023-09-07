@@ -55,22 +55,26 @@ export function Invest(props: Props){
                 </header>
                 <main className={style.main}>
                    <h1>Usinas disponíveis para investimento</h1>
-                   <div className={style.usina}>
-                        <p>Apollo <span className={style.invisible}>II</span></p>
-                        <p>Ocara-CE</p>
-                        <p><span onClick={() => {qtd1 > 0 ? setQtd1(qtd1-1) : ""}}> - </span>{qtd1}<span onClick={() => {qtd1 < 9 ? setQtd1(qtd1+1) : ""}}> + </span></p>
-                        <p>R${valor1*qtd1}</p>
-                   </div>
-                   <div className={style.usina}>
-                        <p>Apollo II</p>
-                        <p>Ocara-CE</p>
-                        <p><span onClick={() => {qtd2 > 0 ? setQtd2(qtd2-1): ""}}> - </span>{qtd2}<span onClick={() => {qtd2 < 9 ? setQtd2(qtd2+1) : ""}}> + </span></p>
-                        <p>R${valor2*qtd2}</p>
-                   </div>
-                   <div className={style.purchase}>
-                        <h1>Total</h1>
-                        <p>R${(valor1 * qtd1) + (valor2 * qtd2)}</p>
-                        <button onClick={purchase}>Efetuar investimento</button>
+                   <div className={style.content}>
+                    <div className={style.usinas}>
+                        <div className={style.usina}>
+                                <p>Apollo <span className={style.invisible}>II</span></p>
+                                <p>Ocara-CE</p>
+                                <p><span onClick={() => {qtd1 > 0 ? setQtd1(qtd1-1) : ""}}> - </span>{qtd1}<span onClick={() => {qtd1 < 9 ? setQtd1(qtd1+1) : ""}}> + </span></p>
+                                <p>R${valor1*qtd1}</p>
+                        </div>
+                        <div className={style.usina}>
+                                <p>Apollo II</p>
+                                <p>Ocara-CE</p>
+                                <p><span onClick={() => {qtd2 > 0 ? setQtd2(qtd2-1): ""}}> - </span>{qtd2}<span onClick={() => {qtd2 < 9 ? setQtd2(qtd2+1) : ""}}> + </span></p>
+                                <p>R${valor2*qtd2}</p>
+                        </div>
+                    </div>
+                    <div className={style.purchase}>
+                            <h1>Total</h1>
+                            <p>R${(valor1 * qtd1) + (valor2 * qtd2)}</p>
+                            <button onClick={purchase}>Efetuar investimento</button>
+                    </div>
                    </div>
                 </main>
             </div>

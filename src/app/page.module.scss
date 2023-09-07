@@ -29,6 +29,11 @@
     align-items: center;
 
     .mid{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
       text-align: center;
 
       .greetings{
@@ -36,40 +41,42 @@
         color: #3A3A3A;
       }
 
-      .generation, .painel{
-        width: 80vw;
-        height: 20vh;
-        background-color: #3A3A3A;
-        color: #F5F5F5;
-        border-radius: 5px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-
-      .generation{
-        h1{
-          font-size: 1.5em;
-          color: #1ECBB5;
+      .panels{
+        .generation, .painel{
+          width: 80vw;
+          height: 20vh;
+          background-color: #3A3A3A;
+          color: #F5F5F5;
+          border-radius: 5px;
+  
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
         }
-
-        p{
-          margin-top: 0.5em;
-          font-size: 2em;
+  
+        .generation{
+          h1{
+            font-size: 1.5em;
+            color: #1ECBB5;
+          }
+  
+          p{
+            margin-top: 0.5em;
+            font-size: 2em;
+          }
         }
-      }
-
-      .painel{
-
-        margin-top: 2em;
-        p{
-          font-size: 3em;
-        }
-
-        span{
-          font-size: 1.5em;
+  
+        .painel{
+  
+          margin-top: 2em;
+          p{
+            font-size: 3em;
+          }
+  
+          span{
+            font-size: 1.5em;
+          }
         }
       }
 
@@ -101,4 +108,128 @@
   }
 }
 
+//MEDIA QUERIES
+@media(min-width: 768px){
+  .main {
+    .header{
+      img{
+        width: 28%;
+      }
+    }
+    .page{  
+      .mid{
+        .panels{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
 
+          .generation, .painel{
+            width: 60vw;
+            height: 20vh;
+          }
+        }
+  
+        .buttons{
+          width: 60vw;
+        }
+      }
+    }
+  }
+}
+
+@media(min-width:1024px){
+  .main {  
+    .header{
+      img{
+        width: 15%;
+      }
+    }
+    .page{  
+      .mid{
+        .panels{
+          flex-direction: row;
+          .generation, .painel{
+            margin: 0;
+            width: 30vw;
+            height: 20vh;
+          }
+
+          .generation{
+            margin-right: 1.5em;
+          }
+        }
+  
+        .buttons{
+          width: 70%;
+          justify-content: space-evenly;
+
+          button{
+            width: 25%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 1200px){
+  .main {
+    .header{
+      img{
+        width: 15%;
+      }
+    }
+    .page{  
+      .mid{
+        .panels{
+          .generation, .painel{
+            width: 30vw;
+            height: 25vh;
+          }
+        }
+  
+        .buttons{
+          width: 65vw;
+
+          button{
+            width: 30%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media(min-width: 2000px){
+  .main {
+    .header{
+      img{
+        width: 10%;
+      }
+    }
+    .page{  
+      .mid{
+        .panels{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .generation, .painel{
+            width: 20vw;
+            height: 25vh;
+          }
+        }
+  
+        .buttons{
+          width: 43vw;
+
+          button{
+            width: 30%;
+            height: 5vh;
+          }
+        }
+      }
+    }
+  }
+}

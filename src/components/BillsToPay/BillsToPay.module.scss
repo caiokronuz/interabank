@@ -69,3 +69,20 @@
         }
     }
 }
+
+//MEDIA QUERIES
+@media(min-width: 1200px){
+    .container{
+        .modal{
+            width: 50%;
+        }
+    }
+  }
+  
+@media(min-width: 2000px){
+    .container{
+        .modal{
+            width: 30%;
+        }
+    }
+}

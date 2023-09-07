@@ -47,12 +47,16 @@ export function DepositOnAccount(props: Props){
                     <p onClick={props.close}>x</p>
                 </header>
                 <main className={style.main}>
-                   <h1>Escolha quanto você quer sacar</h1>
-                   <input type="number" placeholder={`Valor máximo: R$${props.reais.toFixed(2)}`} onChange={e => setValor(Number(e.target.value))}/>
-                   <p>Valor a ser retirado: <span>R${valor.toFixed(2)}</span></p>
-                   <p>Taxa de retirada (2%): <span>R${(valor * 0.02).toFixed(2)}</span></p>
-                   <p>Valor a ser depositado: <span>R${(valor - (valor * 0.02)).toFixed(2)}</span></p>
-                   <button onClick={withdraw}>{text}</button>
+                    <h1>Escolha quanto você quer sacar</h1>
+                   <div className={style.content}>
+                    <input type="number" placeholder={`Valor máximo: R$${props.reais.toFixed(2)}`} onChange={e => setValor(Number(e.target.value))}/>
+                    <div className={style.explanation}>
+                        <p>Valor a ser retirado: <span>R${valor.toFixed(2)}</span></p>
+                        <p>Taxa de retirada (2%): <span>R${(valor * 0.02).toFixed(2)}</span></p>
+                        <p>Valor a ser depositado: <span>R${(valor - (valor * 0.02)).toFixed(2)}</span></p>
+                    </div>
+                    <button onClick={withdraw}>{text}</button>
+                   </div>
                 </main>
             </div>
         </div>

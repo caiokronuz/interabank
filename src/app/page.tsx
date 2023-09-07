@@ -39,13 +39,15 @@ export default function Home() {
       <div className={styles.page}>
         <div className={styles.mid}>
           <h1 className={styles.greetings}>Olá, Santa Edwiges.</h1>
-          <div className={styles.generation}>
-            <h1>Geração 08/2023</h1>
-            <p>40.000,00 kWh</p>
-          </div>
-          <div className={styles.painel}>
-            <p>I$ {interas.toFixed(2)}</p>
-            <span>= R$ {reais.toFixed(2)}</span>
+          <div className={styles.panels}>
+            <div className={styles.generation}>
+              <h1>Geração 08/2023</h1>
+              <p>40.000,00 kWh</p>
+            </div>
+            <div className={styles.painel}>
+              <p>I$ {interas.toFixed(2)}</p>
+              <span>= R$ {reais.toFixed(2)}</span>
+            </div>
           </div>
           <div className={styles.buttons}>
             <button onClick={() => {setIsBillModalsOpen(!isBillModalsOpen)}} disabled={billsToPay == 0 ? true : false}>
