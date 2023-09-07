@@ -3,19 +3,19 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #D0D0D0;
+  background: url('../../public/background.png');
 
   .header{
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #3A3A3A;
+    background-color: rgba($color: #000000, $alpha: 0.3);
     width: 100%;
     height: 12%;
 
     img{
-      width: 35%;
+      width: 20%;
       height: 100%;
     }
   }
@@ -38,15 +38,15 @@
 
       .greetings{
         margin-bottom: 0.5em;
-        color: #3A3A3A;
+        color: #D9D9D9;
       }
 
       .panels{
         .generation, .painel{
           width: 80vw;
           height: 20vh;
-          background-color: #3A3A3A;
-          color: #F5F5F5;
+          background-color: #D9D9D9;
+          color: #3A3A3A;
           border-radius: 5px;
   
           display: flex;
