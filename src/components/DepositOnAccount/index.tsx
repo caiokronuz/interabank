@@ -19,7 +19,7 @@ export function DepositOnAccount(props: Props){
 
 
     async function withdraw(){
-        if(valor == 0){
+        if(valor <= 0){
             Swal.fire('Erro', 'Selecione um valor válido para saque', 'error')
             return;
         }
