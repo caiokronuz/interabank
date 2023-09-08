@@ -6,6 +6,7 @@ interface Props{
     close: () => void;
     attInteras: (value: any) => void;
     setBillsToPay: (value: any) => void;
+    reais: number;
 }
 
 export function BillsToPay(props: Props){
@@ -19,6 +20,10 @@ export function BillsToPay(props: Props){
     }
 
     function payBill(){
+        if(23400 > props.reais){
+            swal.fire("Erro", "Saldo insuficiente para efetuar o pagamento", "error");
+            return;
+        }
         setText("...")
         setTimeout(showMsg, 2000);
     }

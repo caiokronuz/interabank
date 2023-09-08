@@ -31,7 +31,7 @@ export default function Home() {
         <Image src={logo} alt="Logo Interconnect"/>
       </header>
 
-      {isBillModalsOpen && <BillsToPay close={() => setIsBillModalsOpen(!isBillModalsOpen)} attInteras={(value: any) => attInteras(value)} setBillsToPay={(value: any) => setBillsToPay(value)}/>}
+      {isBillModalsOpen && <BillsToPay close={() => setIsBillModalsOpen(!isBillModalsOpen)} attInteras={(value: any) => attInteras(value)} setBillsToPay={(value: any) => setBillsToPay(value)} reais={reais}/>}
       {isDepositModalOpen && <DepositOnAccount close={() => setIsDepositModalOpen(!isDepositModalOpen)} reais={reais} attInteras={(value: any) => attInteras(value)}/>}
       {isInvestModalOpen && <Invest close={() => setIsInvestModalOpen(!isInvestModalOpen)} attInteras={(value:any) => attInteras(value)} reais={reais}/>}
 
