@@ -25,7 +25,7 @@ export function DepositOnAccount(props: Props){
         }
 
         if(valor > props.reais){
-            Swal.fire('Erro', 'O valor inserido é maior que o disponível', 'error')
+            Swal.fire('Erro', `Saldo insuficiente para efetuar o saque`, 'error')
             return;
         }
 
