@@ -199,6 +199,41 @@
       }
     }
   }
+
+  @media(min-height: 2000px){
+    .main {
+      .header{
+        img{
+          width: 20%;
+        }
+      }
+      .page{  
+        .mid{
+          .panels{
+            .generation, .painel{
+              width: 35vw;
+              height: 15vh;
+            }
+          }
+    
+          .buttons{
+            width: 76vw;
+  
+            button{
+              width: 30%;
+              height: 2.5vh;
+
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              font-size: 1.1em;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
 @media(min-width: 2000px){
