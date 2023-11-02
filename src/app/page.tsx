@@ -50,9 +50,6 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.buttons}>
-            <button onClick={() => {setIsBillModalsOpen(!isBillModalsOpen)}} disabled={billsToPay == 0 ? true : false}>
-              <p>{billsToPay == 0 ? "Nenhuma fatura em aberto" : "Pague sua energia"}</p>
-            </button>
             <button onClick={() => {setIsDepositModalOpen(!isDepositModalOpen)}}>
               <p>Receba em dinheiro</p>
             </button>
