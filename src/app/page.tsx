@@ -3,6 +3,10 @@ import Image from 'next/image'
 import {useState} from 'react'
 import styles from './page.module.scss'
 
+import { FaCreditCard } from "react-icons/fa6";
+import { FaPix } from "react-icons/fa6";
+import { IoTrendingUpOutline } from "react-icons/io5";
+
 import { BillsToPay } from '../components/BillsToPay';
 import { DepositOnAccount } from '../components/DepositOnAccount';
 import { Invest } from '../components/Invest';
@@ -10,6 +14,14 @@ import { Invest } from '../components/Invest';
 import logo from '../../public/logo.png';
 
 export default function Home() {
+
+  const actuallyDate = new Date();
+  const actuallyMonth = actuallyDate.getMonth();
+  let month = actuallyMonth;
+
+  if (month < 0){
+    month = 11;
+  }
 
   const [interas,setInteras] = useState(20000)
   const [reais, setReais] = useState(interas * 1.42)
@@ -41,20 +53,27 @@ export default function Home() {
           <h1 className={styles.greetings}>Olá, Santa Edwiges.</h1>
           <div className={styles.panels}>
             <div className={styles.generation}>
-              <h1>Geração 08/2023</h1>
+              <h1>Geração {month}/2023</h1>
               <p>40.000,00 kWh</p>
             </div>
             <div className={styles.painel}>
               <p>I$ {interas.toFixed(2)}</p>
               <span>= R$ {reais.toFixed(2)}</span>
+              <a href={""}>Ver extrato</a>
             </div>
           </div>
           <div className={styles.buttons}>
             <button onClick={() => {setIsDepositModalOpen(!isDepositModalOpen)}}>
-              <p>Receba em dinheiro</p>
+              <FaCreditCard size={25} color={"#FFF"}/>
+              <p>Cartões</p>
+            </button>
+            <button onClick={() => {setIsDepositModalOpen(!isDepositModalOpen)}}>
+              <FaPix size={25} color={"#FFF"}/>
+              <p>Pix</p>
             </button>
             <button onClick={() => {setIsInvestModalOpen(!isInvestModalOpen)}}>
-              <p>Invista em uma usina</p>
+              <IoTrendingUpOutline size={25} color={"#FFF"}/>
+              <p>Investir em Usinas</p>
             </button>
           </div>
         </div>

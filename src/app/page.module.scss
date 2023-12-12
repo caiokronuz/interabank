@@ -77,6 +77,12 @@
           span{
             font-size: 1.5em;
           }
+
+          a{
+            margin-top: 0.5em;
+            color: #1ECBB5;
+            font-size: 0.9em;
+          }
         }
       }
 
@@ -87,7 +93,7 @@
         margin-top: 1em;
 
         button{
-          width: 45%;
+          width: 30%;
 
           border: none;
           padding: 1em;
@@ -101,10 +107,12 @@
           display: flex;
           justify-content: center;
           align-items: center;
+          flex-direction: column;
 
           p{
             font-size: 1em;
             word-break: break-word;
+            margin-top: 1em;
           }
         }
       }
@@ -165,11 +173,11 @@
         }
   
         .buttons{
-          width: 70%;
+          width: 65.5%;
           justify-content: space-evenly;
 
           button{
-            width: 42%;
+            width: 30%;
           }
         }
       }
@@ -194,10 +202,10 @@
         }
   
         .buttons{
-          width: 56vw;
+          width: 60%;
 
           button{
-            width: 45%;
+            width: 25%;
           }
         }
       }
@@ -257,11 +265,11 @@
         }
   
         .buttons{
-          width: 43vw;
+          width: 50%;
 
           button{
-            width: 46%;
-            height: 5vh;
+            width: 20%;
+            height: 10vh;
             font-size: 1.2em;
           }
         }
