@@ -1,0 +1,17 @@
+.main{
+    background-color: #fafafa;
+    color: #393939;
+    border-radius: 5px;
+
+    width: 80%;
+
+    .header, .balance{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8%;
+    }
+    .balance{
+
+    }
+}
