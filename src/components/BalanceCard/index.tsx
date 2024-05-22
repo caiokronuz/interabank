@@ -3,20 +3,17 @@ import {useState, useEffect} from 'react';
 import Link from 'next/link';
 import { MdCurrencyExchange, MdReadMore } from "react-icons/md";
 
+import {useSelector, useDispatch} from 'react-redux'
+import {RootState} from '../../store/store'
+import {toggle} from '../../store/booleanSlice'
+
+
 import styles from './balanceCard.module.scss';
 
 export function BalanceCard(){
     const [changeBalance, setChangeBalance] = useState(false);
-    const [isBalanceVisible, setIsBalanceVisible] = useState(false);
 
-    useEffect(() => {
-        let balanceVisible = localStorage.getItem("isBalanceVisible");
-        if(balanceVisible == null){
-            return;
-        }else{
-            setIsBalanceVisible(Boolean(balanceVisible))
-        }
-    }, [isBalanceVisible])
+    const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
 
     return(
         <div className={styles.main}>

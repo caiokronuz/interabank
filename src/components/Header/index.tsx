@@ -4,17 +4,18 @@ import {useState} from 'react';
 import {FaRegEye, FaRegEyeSlash} from 'react-icons/fa'
 import { MdOutlineAccountCircle } from "react-icons/md";
 
+import {useSelector, useDispatch} from 'react-redux'
+import {RootState} from '../../store/store'
+import {toggle} from '../../store/booleanSlice'
+
+
 import logo from '../../../public/logo.png';
 import styles from './header.module.scss'
 
 export function Header(){
 
-    const [isBalanceVisible, setIsBalanceVisible] = useState(false);
-
-    function handleBalanceVisibilityChange(){
-        setIsBalanceVisible(!isBalanceVisible)
-        localStorage.setItem("isBalanceVisible", String(isBalanceVisible))
-    }
+    const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
+    const dispatch = useDispatch();
 
     return(
         <header className={styles.header}>
@@ -26,9 +27,9 @@ export function Header(){
             />
             <div className={styles.buttons}>
                 {isBalanceVisible ? 
-                    <FaRegEye size={25} color="#FFF" onClick={handleBalanceVisibilityChange}/>
+                    <FaRegEyeSlash size={26} color="#FFF" onClick={() => dispatch(toggle())}/> 
                     : 
-                    <FaRegEyeSlash size={26} color="#FFF" onClick={handleBalanceVisibilityChange}/> 
+                    <FaRegEye size={25} color="#FFF" onClick={() => dispatch(toggle())}/>
                 }
                 <MdOutlineAccountCircle size={25} color="#FFF"/>
             </div>
