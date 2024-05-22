@@ -18,7 +18,7 @@ export function BalanceCard(){
     return(
         <div className={styles.main}>
             <header className={styles.header}>
-                {changeBalance ? <strong>Saldo em Interas</strong> : <strong>Saldo em Euros</strong>}
+                {changeBalance ? <strong>Saldo em Intera</strong> : <strong>Saldo em Euro</strong>}
                 <MdCurrencyExchange size={24} color="#2ec3ac" onClick={() => setChangeBalance(!changeBalance)}/>
             </header>
             <section className={styles.balance}>

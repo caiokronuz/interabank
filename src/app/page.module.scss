@@ -6,4 +6,38 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+  
+  .buttons{
+    width: 80%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 10px;
+
+    a{
+      width: 70%;
+      font-size: 0.8em;
+      background: #FFF;
+      color: #393939;
+      border-radius: 5px;
+      padding: 0.5em 0 0.5em 0;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &:first-child{
+        margin-right: 3px;
+      }
+
+      svg{
+        margin-bottom: 3px;
+      }
+    }
+  }
+
 }
