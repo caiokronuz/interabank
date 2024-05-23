@@ -23,9 +23,9 @@ export function BalanceCard(){
             </header>
             <section className={styles.balance}>
                 {changeBalance ? 
-                    isBalanceVisible ? <p>I$ 39,00</p> : <p>I$ -</p> 
+                    isBalanceVisible ? <p>I$ 33,00</p> : <p>I$ -</p> 
                     : 
-                    isBalanceVisible ? <p>EUR 195,00</p> : <p>EUR -</p>
+                    isBalanceVisible ? <p>EUR 165,00</p> : <p>EUR -</p>
                 }
                 <Link href="/balance">
                     <MdReadMore size={24} color="#2ec3ac" />
