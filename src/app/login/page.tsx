@@ -2,8 +2,21 @@
 import { FormEvent, useState } from "react";
 import { PiEyeClosedLight, PiEyeLight } from "react-icons/pi";
 
+import { db } from '../../services/firebaseConnection';
+import {doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc} from 'firebase/firestore'
+
+import bcrypt from 'bcryptjs';
+
 import styles from './login.module.scss';
 import Link from "next/link";
+
+interface UserProps{
+    name: string,
+    login: string,
+    password: string,
+    interas: number,
+    created: Date,
+}
 
 export default function Login(){
     
@@ -12,14 +25,48 @@ export default function Login(){
     const [login, setLogin] = useState("");
     const [password, setPassword] = useState("");
 
-    function loginClient(event: FormEvent){
+
+    async function loginClient(event: FormEvent){
         event.preventDefault();
 
         if (login === "" || password === ""){
             return;
         }
 
-        alert(`login: ${login} password: ${password} | USUÁRIO LOGADO`)
+        try {
+            const q = query(collection(db, "users"), where("login", "==", login));
+            const snapshotAccount = await getDocs(q);
+        
+            if (!snapshotAccount.empty) {
+                const userDoc = snapshotAccount.docs[0];
+                const userData = userDoc.data() as UserProps; // Tipando os dados como User
+        
+                if (userData) {
+                    const user: UserProps = {
+                        login: userData.login,
+                        name: userData.name,
+                        created: userData.created,
+                        password: userData.password,
+                        interas: userData.interas
+                    };
+                    
+                    const match = await bcrypt.compare(password, user.password);
+                    
+                    if(match){
+                        alert("LOGADO")
+                    }else{
+                        alert("VAGABUNDO")
+                    }
+
+                }
+
+            } else {
+                console.log("Usuário não encontrado.");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+        
     }
 
     return(
