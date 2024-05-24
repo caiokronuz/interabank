@@ -6,6 +6,9 @@ import { db } from '../../services/firebaseConnection';
 import {doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc} from 'firebase/firestore'
 
 import bcrypt from 'bcryptjs';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../store/userSlice';
+import { generateToken } from '../../services/auth';
 
 import styles from './login.module.scss';
 import Link from "next/link";
@@ -19,6 +22,8 @@ interface UserProps{
 }
 
 export default function Login(){
+
+    const dispatch = useDispatch();
     
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     
@@ -49,13 +54,14 @@ export default function Login(){
                         password: userData.password,
                         interas: userData.interas
                     };
-                    
+
                     const match = await bcrypt.compare(password, user.password);
                     
                     if(match){
-                        alert("LOGADO")
+                        dispatch(setToken("meu_token"));
+                        alert("logado com sucesso!")
                     }else{
-                        alert("VAGABUNDO")
+                        alert("Login ou senha incorretos")
                     }
 
                 }
