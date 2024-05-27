@@ -1,5 +1,6 @@
 "use client"
 import { FormEvent, useState } from "react";
+import { useRouter } from 'next/navigation';
 import { PiEyeClosedLight, PiEyeLight } from "react-icons/pi";
 
 import { db } from '../../services/firebaseConnection';
@@ -12,6 +13,7 @@ import { generateToken } from '../../services/auth';
 
 import styles from './login.module.scss';
 import Link from "next/link";
+import jwt from "jsonwebtoken";
 
 interface UserProps{
     name: string,
@@ -24,6 +26,11 @@ interface UserProps{
 export default function Login(){
 
     const dispatch = useDispatch();
+    const router = useRouter();
+    
+    //JSON WEB TOKEN
+    const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY || "";
+    const MAX_AGE = 60*60*24*30 
     
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
     
@@ -58,8 +65,10 @@ export default function Login(){
                     const match = await bcrypt.compare(password, user.password);
                     
                     if(match){
-                        dispatch(setToken("meu_token"));
+                        const token = jwt.sign(user.login, SECRET_KEY);
+                        await localStorage.setItem('auth-token', token);
                         alert("logado com sucesso!")
+                        router.push('/');
                     }else{
                         alert("Login ou senha incorretos")
                     }

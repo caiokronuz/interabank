@@ -12,11 +12,11 @@ export function BalanceCard(){
     const [changeBalance, setChangeBalance] = useState(false);
 
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
-    const token = useSelector((state: RootState) => state.user.token)
+    const token = localStorage.getItem('auth-token');
 
    useEffect(() => {
         console.log(`token: ${token}`)
-   }, [])
+   }, [token])
 
     return(
         <div className={styles.main}>
