@@ -1,5 +1,5 @@
 "use client"
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import Link from 'next/link';
 import { MdCurrencyExchange, MdReadMore } from "react-icons/md";
 
@@ -9,14 +9,11 @@ import {RootState} from '../../store/store'
 import styles from './balanceCard.module.scss';
 
 export function BalanceCard(){
+
     const [changeBalance, setChangeBalance] = useState(false);
 
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
-    const token = localStorage.getItem('auth-token');
 
-   useEffect(() => {
-        console.log(`token: ${token}`)
-   }, [token])
 
     return(
         <div className={styles.main}>
