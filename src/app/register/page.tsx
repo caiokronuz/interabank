@@ -1,5 +1,7 @@
 "use client"
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import cookie from 'js-cookie';
 import Image from 'next/image';
 import { FormEvent, useState } from "react";
 import Link from "next/link";
@@ -16,7 +18,17 @@ import logo from '../../../public/logo.png';
 import styles from './register.module.scss';
 
 export default function Register() {
+
     const router = useRouter();
+
+    useEffect(() => {
+        const hasCookie = cookie.get("sessionId")
+
+        if (hasCookie){
+            router.push('/')
+        }
+
+    }, [])
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 

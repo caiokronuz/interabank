@@ -1,5 +1,6 @@
 "use client"
 import Image from "next/image";
+import { useEffect } from "react";
 import { FormEvent, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { PiEyeClosedLight, PiEyeLight } from "react-icons/pi";
@@ -17,16 +18,22 @@ import styles from './login.module.scss';
 
 
 interface UserProps {
-    name: string,
     login: string,
     password: string,
-    interas: number,
-    created: Date,
 }
 
 export default function Login() {
 
     const router = useRouter();
+
+    useEffect(() => {
+        const hasCookie = cookie.get("sessionId")
+
+        if (hasCookie){
+            router.push('/')
+        }
+
+    }, [])
 
     //JSON WEB TOKEN
     const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY || "";
@@ -55,10 +62,7 @@ export default function Login() {
                 if (userData) {
                     const user: UserProps = {
                         login: userData.login,
-                        name: userData.name,
-                        created: userData.created,
                         password: userData.password,
-                        interas: userData.interas
                     };
 
                     const match = await bcrypt.compare(password, user.password);

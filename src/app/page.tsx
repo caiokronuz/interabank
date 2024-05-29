@@ -3,6 +3,10 @@ import {redirect} from 'next/navigation'
 import styles from './page.module.scss'
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
+import { UserProps } from '../utils/props';
+
+import { db } from '../services/firebaseConnection';
+import { doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc, Timestamp } from 'firebase/firestore'
 
 import { Header } from '../components/Header'
 
@@ -19,20 +23,47 @@ interface CookieProps {
   value: string
 }
 
-export default function Home() {
+export default async function Home() {
 
   const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY || ""
   const cookieStore = cookies();
   var login = ""
 
+  var user: UserProps = {
+    name: "",
+    login: "",
+    password: "",
+    interas: 0,
+    created: new Timestamp(0,0),
+  }
+
   try{
     let {value} = cookieStore.get("sessionId") as CookieProps
     let getLogin = jwt.verify(value, SECRET_KEY);
     login = getLogin.toString();
-    console.log(`login: ${login}`)
+    
+    const q = query(collection(db, "users"), where("login", "==", login));
+    const snapshotAccount = await getDocs(q);
+
+    const userDoc = snapshotAccount.docs[0];
+    const userData = userDoc.data() as UserProps; // Tipando os dados como User
+
+    const miliseconds = userData.created?.seconds * 1000;
+  
+
+    user = {
+      name: userData.name,
+      login: userData.login,
+      password: userData.password,
+      interas: userData.interas,
+      created: new Date(miliseconds).toLocaleDateString(),
+    };
+
   }catch(err){
     redirect('/login')
   }
+
+  console.log(user);
 
   return (
     <>
