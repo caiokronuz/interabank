@@ -1,22 +1,24 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+// store/userSlice.js
+import { createSlice } from '@reduxjs/toolkit';
+import { UserProps } from '../utils/props';
 
-interface UserState {
-  token: string | null;
-}
-
-const initialState: UserState = {
-  token: null,
+const initialState: UserProps = {
+  id: '',
+  name: '',
+  login: '',
+  interas: 0,
+  created: '',
 };
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    setToken(state, action: PayloadAction<string>) {
-      state.token = action.payload;
+    setUser: (state, action) => {
+      return { ...state, ...action.payload };
     },
   },
 });
 
-export const { setToken } = userSlice.actions;
+export const { setUser } = userSlice.actions;
 export default userSlice.reducer;

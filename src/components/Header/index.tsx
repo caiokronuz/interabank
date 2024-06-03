@@ -1,5 +1,6 @@
 "use client"
 import Image from 'next/image';
+import Link from 'next/link';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
 import { MdOutlineAccountCircle } from "react-icons/md";
 
@@ -16,18 +17,16 @@ export function Header() {
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        
-    },[])
-
     return (
         <header className={styles.header}>
-            <Image
-                src={logo}
-                alt="Logo Interconnect"
-                quality={100}
-                priority
-            />
+            <Link href={'/'}>
+                <Image
+                    src={logo}
+                    alt="Logo Interconnect"
+                    quality={100}
+                    priority
+                />
+            </Link>
 
             <div className={styles.buttons}>
                 {isBalanceVisible ?

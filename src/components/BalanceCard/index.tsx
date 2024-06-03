@@ -1,18 +1,30 @@
 "use client"
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import { MdCurrencyExchange, MdReadMore } from "react-icons/md";
 
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { setUser } from '@/src/store/userSlice';
 import {RootState} from '../../store/store'
 
 import styles from './balanceCard.module.scss';
+import { UserProps } from '@/src/utils/props';
 
-export function BalanceCard(){
+interface BalanceCardProps{
+    user: UserProps;
+}
+
+export function BalanceCard({user}: BalanceCardProps){
+
+    const dispatch = useDispatch();
 
     const [changeBalance, setChangeBalance] = useState(false);
 
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
+
+    useEffect(() => {
+        dispatch(setUser(user));
+    },[user, dispatch])
 
 
     return(
@@ -23,9 +35,9 @@ export function BalanceCard(){
             </header>
             <section className={styles.balance}>
                 {changeBalance ? 
-                    isBalanceVisible ? <p>I$ 41,00</p> : <p>I$ -</p> 
+                    isBalanceVisible ? <p>I$ {user.interas}</p> : <p>I$ -</p> 
                     : 
-                    isBalanceVisible ? <p>EUR 205,00</p> : <p>EUR -</p>
+                    isBalanceVisible ? <p>EUR {user.interas * 5}</p> : <p>EUR -</p>
                 }
                 <Link href="/balance">
                     <MdReadMore size={24} color="#2ec3ac" />

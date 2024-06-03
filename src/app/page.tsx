@@ -3,7 +3,7 @@ import {redirect} from 'next/navigation'
 import styles from './page.module.scss'
 import { cookies } from 'next/headers';
 import jwt from 'jsonwebtoken';
-import { UserProps } from '../utils/props';
+import { UserProps, UserDBProps } from '../utils/props';
 
 import { db } from '../services/firebaseConnection';
 import { doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc, Timestamp } from 'firebase/firestore'
@@ -30,11 +30,11 @@ export default async function Home() {
   var login = ""
 
   var user: UserProps = {
+    id: "",
     name: "",
     login: "",
-    password: "",
     interas: 0,
-    created: new Timestamp(0,0),
+    created: '',
   }
 
   try{
@@ -46,15 +46,15 @@ export default async function Home() {
     const snapshotAccount = await getDocs(q);
 
     const userDoc = snapshotAccount.docs[0];
-    const userData = userDoc.data() as UserProps; // Tipando os dados como User
+    const userData = userDoc.data() as UserDBProps; // Tipando os dados como User
 
     const miliseconds = userData.created?.seconds * 1000;
   
 
     user = {
+      id: userDoc.id,
       name: userData.name,
       login: userData.login,
-      password: userData.password,
       interas: userData.interas,
       created: new Date(miliseconds).toLocaleDateString(),
     };
@@ -69,7 +69,7 @@ export default async function Home() {
     <>
       <Header/>
       <main className={styles.main}>
-      <BalanceCard />
+      <BalanceCard user={user}/>
       <div className={styles.buttons}>
         <Link href="/pix"><FaPix size={20} color='#393939'/>Transferência</Link>
         <Link href="/card"><FaCreditCard size={20} color='#393939'/>Pagamento</Link>

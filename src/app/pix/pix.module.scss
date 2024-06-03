@@ -1,0 +1,70 @@
+.main{
+    background: url('../../../public/background.png');
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .section{
+        background-color: rgba(250, 250, 250, 0.7);
+        width: 90%;
+        height: 70%;
+        border-radius: 5px;
+
+        .search{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            margin-top: 1em;
+
+            input{
+                width: 90%;
+                padding: 0.25em;
+                border: none;
+                border-radius: 2px;
+                margin-bottom: 1em;
+            }
+        }
+
+        p, .balance{
+            font-size: 0.9em;
+            text-align: center;
+            color: #393939;
+        }
+
+        .balance{
+            margin-top: 1em;
+        }
+
+        p{
+            margin-bottom: 1em;
+        }
+
+        .cards{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+    
+            span{
+                width: 90%;
+                background-color: #fafafa;
+                margin-bottom: 0.25em;
+                padding: 0.5em;
+                border-radius: 5px;
+
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+    
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+}
