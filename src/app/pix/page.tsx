@@ -9,14 +9,18 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/src/services/firebaseConnection";
 import { useEffect, useState } from "react";
 import { UserProps } from "@/src/utils/props";
-import { useSelector } from "react-redux";
+
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/src/store/store";
+import { setReceiver } from "@/src/store/receiverSlice";
 
 
 interface usersProps extends Array<UserProps> { }
 
 export default function Pix() {
     const router = useRouter();
+
+    const dispatch = useDispatch()
     const user = useSelector((state: RootState) => state.user)
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value);
 
@@ -46,6 +50,10 @@ export default function Pix() {
         getUsers();
     }, [])
 
+    async function getReceiver(index:number){
+        await dispatch(setReceiver(users[index]));
+    }  
+
     return (
         <main className={styles.main}>
             <Header />
@@ -57,11 +65,11 @@ export default function Pix() {
                 <p>Seus contatos</p>
                 <div className={styles.cards}>
                     {users.length === 0 && <p>carregando...</p>}
-                    {users.map(user => (
+                    {users.map((user, index) => (
                         user.name != userName ? (
                             <span>
                                 {user.name}
-                                <Link href={`/pix/${user.id}`}><RiSendPlaneFill color="#2ec3ac" size={20} /></Link>
+                                <Link href={`/pix/${user.id}`} onClick={() => getReceiver(index)}><RiSendPlaneFill color="#2ec3ac" size={20} /></Link>
                             </span>
                         ) : ('')
                     ))}
