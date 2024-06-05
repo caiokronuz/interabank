@@ -1,6 +1,9 @@
 "use client"
+import { db } from "@/src/services/firebaseConnection";
 import { RootState } from "@/src/store/store"
 import { UserProps } from "@/src/utils/props";
+import { update } from "firebase/database";
+import { doc, updateDoc } from "firebase/firestore";
 import { FormEvent, useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 
@@ -16,7 +19,7 @@ export default function Pix() {
         message: "",
     })
 
-    function sendPix(event: FormEvent){
+    async function sendPix(event: FormEvent){
         event.preventDefault();
         
         if(pix.value === 0){
@@ -34,7 +37,26 @@ export default function Pix() {
             return;
         }
 
-        alert(`saldo do receiver: ${receiver.interas+pix.value}`)
+        //alert(`id do owner: ${owner.id} | id do receiver: ${receiver.id}`)
+
+        try{
+            const ownerDocRef = doc(db, 'users', owner.id);
+            await updateDoc(ownerDocRef, {
+                interas: owner.interas - pix.value,
+            });
+
+            const receiverDocRef = doc(db, 'users', receiver.id);
+            await updateDoc(receiverDocRef, {
+                interas: receiver.interas + pix.value,
+            });
+
+            alert("pix realizado com sucesso")
+        }catch(err){
+            alert("erro")
+            console.log(err)
+        }
+
+        
 
     }
 
