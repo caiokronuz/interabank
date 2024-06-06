@@ -1,0 +1,107 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url('../../../../public/background.png');
+
+    .content{
+        width: 90%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: #fff;
+        background: rgba(57, 57, 57, 0.5);
+        padding: 1em;
+        border-radius: 5px;
+        backdrop-filter: blur(5px);
+
+        .balance{
+
+        }
+
+        .pix{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            
+            margin-top: 1.25em;
+
+            .receiver{
+                h2{
+                    font-size: 1.2em;
+                }
+                
+                p{
+                    font-size: 0.9em;
+                    margin-top: 0.5em;
+                }
+            }
+
+            form{
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                margin-top: 1.45em;
+
+                div{
+                    text-align: center;
+                    h2{
+                        font-size: 1.2em;
+                    }
+                }
+
+                .value{
+                    width: 100%;
+                    div{
+                        margin-top: 0.5em;
+                        margin-bottom: 1.45em;
+
+                        strong{
+                            width: 20%;
+                            font-size: 1.2em;
+                        }
+                        input{
+                            background: none;
+                            border: none;
+                            color: #fff;
+                            text-align: center;
+                            font-size: 1.2em;
+    
+                            width: 60%;
+                        }
+                    }
+
+                }
+
+                .message{
+                    width: 100%;
+                    height: 100%;
+
+                    textarea{
+                        width: 100%;
+                        height: 65px;
+                        border-radius: 5px;
+                        margin: 0.5em 0 0.5em 0;
+                    }
+                }
+
+                button{
+                    width: 100%;
+                    background-color: #2ec3ac;
+                    padding: 0.5em;
+                    color: #fff;
+                    border-radius: 5px;
+                    border: none;
+                }
+            }
+        }
+    }
+
+}

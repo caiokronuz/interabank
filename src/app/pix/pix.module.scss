@@ -8,7 +8,8 @@
     align-items: center;
 
     .section{
-        background-color: rgba(250, 250, 250, 0.7);
+        background-color: rgba(250, 250, 250, 0.5);
+        backdrop-filter: blur(5px);
         width: 90%;
         height: 70%;
         border-radius: 5px;

@@ -18,7 +18,7 @@ export function BalanceCard({user}: BalanceCardProps){
 
     const dispatch = useDispatch();
 
-    const [changeBalance, setChangeBalance] = useState(false);
+    const [changeBalance, setChangeBalance] = useState(true);
 
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
 
@@ -39,7 +39,7 @@ export function BalanceCard({user}: BalanceCardProps){
                     : 
                     isBalanceVisible ? <p>EUR {user.interas * 5}</p> : <p>EUR -</p>
                 }
-                <Link href="/balance">
+                <Link href="/transactions">
                     <MdReadMore size={24} color="#2ec3ac" />
                 </Link>
             </section>
