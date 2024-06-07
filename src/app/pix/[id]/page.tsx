@@ -69,7 +69,9 @@ export default function Pix() {
                 created: new Date(),
                 value: pix.value,
                 origin_id: origin.id,
+                origin_name: origin.name,
                 receiver_id: receiver.id,
+                receiver_name: receiver.name,
                 message: pix.message,
             }
 

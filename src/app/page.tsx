@@ -10,7 +10,7 @@ import { doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc, Time
 
 import { Header } from '../components/Header'
 
-import { FaCreditCard } from "react-icons/fa6";
+import { PiContactlessPayment } from "react-icons/pi";
 import { FaPix } from "react-icons/fa6";
 
 import { BalanceCard } from '../components/BalanceCard';
@@ -72,7 +72,7 @@ export default async function Home() {
       <BalanceCard user={user}/>
       <div className={styles.buttons}>
         <Link href="/pix"><FaPix size={20} color='#393939'/>Transferência</Link>
-        <Link href="/card"><FaCreditCard size={20} color='#393939'/>Pagamento</Link>
+        <Link href="/card"><PiContactlessPayment size={20} color='#393939'/>Pagamento</Link>
       </div>
     </main>
     </>
