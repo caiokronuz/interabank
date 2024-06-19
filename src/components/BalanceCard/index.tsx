@@ -4,11 +4,11 @@ import Link from 'next/link';
 import { MdCurrencyExchange, MdReadMore } from "react-icons/md";
 
 import {useDispatch, useSelector} from 'react-redux'
-import { setUser } from '@/src/store/userSlice';
+import { setUser } from '@/store/userSlice';
 import {RootState} from '../../store/store'
 
 import styles from './balanceCard.module.scss';
-import { UserProps } from '@/src/utils/props';
+import { UserProps } from '@/utils/props';
 
 interface BalanceCardProps{
     user: UserProps;

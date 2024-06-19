@@ -8,6 +8,8 @@ import cookie from 'js-cookie';
 import Link from "next/link";
 import jwt from "jsonwebtoken";
 
+import { signIn, signOut } from "next-auth/react";
+
 import { db } from '../../services/firebaseConnection';
 import { doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc } from 'firebase/firestore'
 
@@ -91,6 +93,10 @@ export default function Login() {
         <main className={styles.main}>
             <section>
                 <Image src={logo} alt="Logo Interconnect"/>
+
+
+                <button onClick={() => signIn()}>LOGAR COM GOOGLE</button>
+
                 <form onSubmit={loginClient}>
                     <input
                         type="text"
