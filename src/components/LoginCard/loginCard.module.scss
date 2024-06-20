@@ -1,0 +1,33 @@
+.loginCard{
+    width: 80%;
+    height: 30%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    
+    img{
+        width: 50%;
+        height: 60%;
+    }
+
+    background-color: #393939;
+    border-radius: 5px;
+
+    max-width: 320px;   
+
+    button{
+        background: none;
+        border: 1px solid #2ec3ac;
+        padding: 1em;
+        border-radius: 5px;
+        color: #fff;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 20px;
+    }
+}

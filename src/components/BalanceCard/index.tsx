@@ -8,10 +8,10 @@ import { setUser } from '@/store/userSlice';
 import {RootState} from '../../store/store'
 
 import styles from './balanceCard.module.scss';
-import { UserProps } from '@/utils/props';
+import { UserDBProps, UserProps } from '@/utils/props';
 
 interface BalanceCardProps{
-    user: UserProps;
+    user: UserDBProps;
 }
 
 export function BalanceCard({user}: BalanceCardProps){

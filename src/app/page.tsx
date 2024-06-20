@@ -1,69 +1,49 @@
-import Image from 'next/image'
+import {auth} from '@/lib/auth';
+
+import Link from 'next/link';
 import {redirect} from 'next/navigation'
-import styles from './page.module.scss'
-import { cookies } from 'next/headers';
-import jwt from 'jsonwebtoken';
-import { UserProps, UserDBProps } from '../utils/props';
 
 import { db } from '../services/firebaseConnection';
-import { doc, collection, query, where, getDoc, getDocs, addDoc, deleteDoc, Timestamp } from 'firebase/firestore'
-
-import { Header } from '../components/Header'
+import { collection, query, where, getDocs, Timestamp } from 'firebase/firestore'
 
 import { PiContactlessPayment } from "react-icons/pi";
 import { FaPix } from "react-icons/fa6";
 
 import { BalanceCard } from '../components/BalanceCard';
+import { Header } from '../components/Header'
+import { UserDBProps } from '../utils/props';
 
-import logo from '../../public/logo.png';
-import Link from 'next/link';
-
-interface CookieProps {
-  name: string,
-  value: string
-}
+import styles from './page.module.scss'
 
 export default async function Home() {
 
-  const SECRET_KEY = process.env.NEXT_PUBLIC_JWT_SECRET_KEY || ""
-  const cookieStore = cookies();
-  var login = ""
-
-  var user: UserProps = {
-    id: "",
+  const session = await auth();
+  let user: UserDBProps = {
     name: "",
-    login: "",
+    email: "",
+    image: "",
     interas: 0,
-    created: '',
-  }
+    created: new Timestamp(0,0),
+  };
 
-  try{
-    let {value} = cookieStore.get("sessionId") as CookieProps
-    let getLogin = jwt.verify(value, SECRET_KEY);
-    login = getLogin.toString();
-    
-    const q = query(collection(db, "users"), where("login", "==", login));
+  if(!session || !session.user){
+    redirect('/login');
+  }else{
+    const {name, email, image} = session.user;
+
+    const q = query(collection(db, "users"), where("email", "==", email));
     const snapshotAccount = await getDocs(q);
 
     const userDoc = snapshotAccount.docs[0];
-    const userData = userDoc.data() as UserDBProps; // Tipando os dados como User
-
-    const miliseconds = userData.created?.seconds * 1000;
-  
-
+    const userData = userDoc.data() as UserDBProps;
     user = {
-      id: userDoc.id,
       name: userData.name,
-      login: userData.login,
+      email: userData.email,
+      image: userData.image,
       interas: userData.interas,
-      created: new Date(miliseconds).toLocaleDateString(),
-    };
-
-  }catch(err){
-    redirect('/login')
+      created: userData.created,
+    }
   }
-
-  console.log(user);
 
   return (
     <>

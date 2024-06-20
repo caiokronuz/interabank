@@ -11,6 +11,8 @@ import { toggle } from '../../store/booleanSlice'
 import logo from '../../../public/logo.png';
 import styles from './header.module.scss'
 import { useEffect } from 'react';
+import { signOut } from 'next-auth/react';
+import {auth} from "@/lib/auth"
 
 export function Header() {
 
@@ -34,7 +36,7 @@ export function Header() {
                     :
                     <FaRegEye size={25} color="#FFF" onClick={() => dispatch(toggle())} />
                 }
-                <MdOutlineAccountCircle size={25} color="#FFF" />
+                <MdOutlineAccountCircle onClick={() => signOut()} size={25} color="#FFF" />
             </div>
         </header>
     )
