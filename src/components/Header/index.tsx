@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaRegEye, FaRegEyeSlash } from 'react-icons/fa'
-import { MdOutlineAccountCircle } from "react-icons/md";
+import { IoIosLogOut } from "react-icons/io";
 
 import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from '../../store/store'
@@ -18,6 +18,14 @@ export function Header() {
 
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value)
     const dispatch = useDispatch();
+
+    function handleLogout(){
+        const confirm = window.confirm("Você deseja deslogar da sua conta?")
+        if(confirm){
+            signOut();
+        }
+    }
+    
 
     return (
         <header className={styles.header}>
@@ -36,7 +44,7 @@ export function Header() {
                     :
                     <FaRegEye size={25} color="#FFF" onClick={() => dispatch(toggle())} />
                 }
-                <MdOutlineAccountCircle onClick={() => signOut()} size={25} color="#FFF" />
+                <IoIosLogOut onClick={handleLogout} size={25} color="red" />
             </div>
         </header>
     )

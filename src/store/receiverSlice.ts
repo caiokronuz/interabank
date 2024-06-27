@@ -3,9 +3,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import { UserProps } from '../utils/props';
 
 const initialState: UserProps = {
-  id: '',
-  name: '',
-  login: '',
+  id: "",
+  name: "",
+  email: "",
+  image: "",
   interas: 0,
   created: '',
 };

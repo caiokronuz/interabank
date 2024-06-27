@@ -1,11 +1,12 @@
 "use client"
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { RootState } from '@/src/store/store';
-import { db } from '@/src/services/firebaseConnection';
+import { RootState } from '@/store/store';
+import { db } from '@/services/firebaseConnection';
 import { Timestamp, collection, getDocs, query, where } from 'firebase/firestore';
+import { useRouter } from 'next/navigation';
 
-import { Header } from '@/src/components/Header';
+import { Header } from '@/components/Header';
 
 import styles from './styles.module.scss';
 
@@ -22,15 +23,16 @@ interface Transaction {
 
 export default function Transactions() {
 
+    const router = useRouter();
+
     const owner = useSelector((state: RootState) => state.user);
     const isBalanceVisible = useSelector((state: RootState) => state.boolean.value);
     const [transactions, setTransactions] = useState<Transaction[]>([]);
 
     useEffect(() => {
-        if (owner.login === "") return;
+        if (owner.id === "") router.push('/');
 
         async function getTransactions() {
-            console.log(owner)
             const transactionsRef = collection(db, "transactions");
             const q1 = query(transactionsRef, where("origin_id", "==", owner.id));
             const q2 = query(transactionsRef, where("receiver_id", "==", owner.id));
@@ -63,18 +65,16 @@ export default function Transactions() {
                 <ul>
                     {transactions.length > 0 ? (
                         transactions.map(transaction => (
-                            <>
+                            <li key={transaction.id}>
                                 <p className={styles.date}>{new Date(transaction.created.seconds * 1000).toLocaleString()}</p>
-                                <li key={transaction.id}>
-                                    <p>{transaction.origin_id === owner.id ? "Pix enviado" : "Pix recebido"}</p>
-                                    <p style={transaction.origin_id === owner.id ? { color: "red" } : { color: "green" }}>I$ {isBalanceVisible ? transaction.value : '-'}</p>
-                                    <p>{transaction.origin_id === owner.id ? transaction.receiver_name : transaction.origin_name}</p>
-                                    <p className={styles.message}>{transaction.message}</p>
-                                </li>
-                            </>
+                                <p>{transaction.origin_id === owner.id ? "Pix enviado" : "Pix recebido"}</p>
+                                <p style={transaction.origin_id === owner.id ? { color: "red" } : { color: "green" }}>I$ {isBalanceVisible ? transaction.value : '-'}</p>
+                                <p>{transaction.origin_id === owner.id ? transaction.receiver_name : transaction.origin_name}</p>
+                                <p className={styles.message}>{transaction.message}</p>
+                            </li>
                         ))
                     ) : (
-                        <p>Nenhuma transação</p>
+                        <p>Nenhuma transação registrada</p>
                     )}
                 </ul>
             </section>

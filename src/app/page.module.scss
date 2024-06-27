@@ -18,7 +18,12 @@
 
     margin-top: 10px;
 
-    a{
+    button{
+      cursor: not-allowed;
+    }
+
+    a,button{
+      border: none;
       width: 70%;
       font-size: 0.8em;
       background: #FFF;

@@ -1,14 +1,14 @@
 "use client"
-import { db } from "@/src/services/firebaseConnection";
-import { RootState } from "@/src/store/store"
-import { UserProps } from "@/src/utils/props";
+import { db } from "@/services/firebaseConnection";
+import { RootState } from "@/store/store"
+import { UserProps } from "@/utils/props";
 import { addDoc, collection, doc, updateDoc } from "firebase/firestore";
 import { FormEvent, useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 
 import { useRouter } from "next/navigation";
 
-import { Header } from "@/src/components/Header";
+import { Header } from "@/components/Header";
 
 import styles from './pix.module.scss';
 

@@ -1,18 +1,18 @@
 "use client"
-import { Header } from "@/src/components/Header";
+import { Header } from "@/components/Header";
 import { RiSendPlaneFill } from "react-icons/ri";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import styles from './pix.module.scss';
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/src/services/firebaseConnection";
+import { db } from "@/services/firebaseConnection";
 import { useEffect, useState } from "react";
-import { UserProps } from "@/src/utils/props";
+import { UserProps } from "@/utils/props";
 
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/src/store/store";
-import { setReceiver } from "@/src/store/receiverSlice";
+import { RootState } from "@/store/store";
+import { setReceiver } from "@/store/receiverSlice";
 
 
 interface usersProps extends Array<UserProps> { }
@@ -67,7 +67,7 @@ export default function Pix() {
                     {users.length === 0 && <p>carregando...</p>}
                     {users.map((user, index) => (
                         user.name != userName ? (
-                            <span>
+                            <span key={user.id}>
                                 {user.name}
                                 <Link href={`/pix/${user.id}`} onClick={() => getReceiver(index)}><RiSendPlaneFill color="#2ec3ac" size={20} /></Link>
                             </span>
